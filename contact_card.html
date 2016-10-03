@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="contact_card.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var i = 1;
+    $('form').submit(function(){
+      if( $('#fn').val() == "" || $('#ln').val() == "" || $('#description').val() == ""){
+        alert('Please fill in first name, last name, and description fields completely.');
+      } else {
+      $('#cards').append('<div class ="card" id="c'+i+'">');
+      $('#c'+i).append('<h2> '+ $('#fn').val() +' '+ $('#ln').val() + ' </h2>');
+      $('#c'+i).append('<p class="clickme">Click for description!</p>');
+      $('#c'+i).append('<p class="click_description"> ' + $('#description').val() + ' </p>');
+      $('#c'+i).append('</div>');
+      i++;
+      }
+      return false;
+    });
+    $(document).on('click', '.card', function(){
+    $(this).children('h2').toggle();  
+    $(this).children('p').toggle();
+    });
+  });
+  </script>
+  <title>Contact Card</title>
+</head>
+<body>
+  <div id="container">
+    <form>
+      <label>
+        First Name:<input type="text" id="fn">
+      </label>
+      <label>
+        Last Name:<input type="text" id="ln">
+      </label>
+      <label>
+        Description:<textarea id="description" placeholder=" Enter description:"></textarea>
+      </label>
+      <input type="submit" value=" Add User ">
+    </form>
+    <div id="cards">
+    </div>
+  </div>
+</body>
+</html>
